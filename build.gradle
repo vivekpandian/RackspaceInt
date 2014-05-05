@@ -100,7 +100,7 @@ dependencies {
 
 
  
-jettyRunWar.contextPath = '' 
+jettyRunWar.contextPath = 'fibanocci' 
 
 test {
     systemProperties 'property': 'value'
