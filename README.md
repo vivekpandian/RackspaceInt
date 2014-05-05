@@ -6,10 +6,13 @@ Instructions to deploy/run Fibanocci Service.
 Deployed the project on openshift. you can use the following steps  to test the project.
 
 Step 1: open any tool such as POSTMAN or RestClient to test the Rest API.
+
          1. set the url as 
-         		http://127.2.200.1:8080/fibanocci/api/v1/fib/{n}  
+         		http://127.2.200.3:8080/fibanocci/api/v1/fib/{n}  
+         		
          	where {n} should be replaced any number.For example, to find the first 5 fibanocci numbers, the url would be 
-         		http://127.2.200.1:8080/fibanocci/api/v1/fib/5
+         	
+         		http://127.2.200.3:8080/fibanocci/api/v1/fib/5
          		
          2. set the method as "GET"
          
@@ -38,8 +41,11 @@ step 3:  Deploy the project to InMemory Jetty Container using the following comm
 step 4 : Now, open any tool such as POSTMAN or RestClient to test the Rest API.
          
          1. set the url as 
+         
          		http://localhost:8080/fibanocci/api/v1/fib/{n}  
+         		
          	where {n} should be replaced any number.For example, to find the first 5 fibanocci numbers, the url would be 
+         	
          		http://localhost:8080/fibanocci/api/v1/fib/5
          
          2. set the method as "GET"
@@ -62,5 +68,6 @@ step 3: Run the following command.
         if gradle is not installed, use the following command
         	
         	<prompt>gradlew test
+        	
 step 4: Test reports will be generated at the following location  <PROJECT_HOME>\build\reports\tests\index.html
         

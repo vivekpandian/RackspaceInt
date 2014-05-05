@@ -4,17 +4,7 @@ apply plugin: 'war'
 apply plugin: 'jetty'
 
 
-buildscript {
-    repositories {
-        jcenter()
-    }
 
-    dependencies {
-        classpath 'org.jboss.arquillian.gradle:arquillian-gradle-plugin:0.1'
-    }
-}
-
-apply plugin: 'arquillian'
 
 /*sourceCompatibility = 1.5
 version = '1.0'
@@ -107,28 +97,10 @@ dependencies {
  	destinationDir = file("webapps")
 }
 
-arquillian {
-    debug = true
-    deployable = file("$rootDir/war/ROOT.war")
 
-    containers {
-        jetty {
-            version = '8'
-            type = 'embedded'
-            config = ['bindHttpPort': 8080, 'bindAddress': '127.0.0.1', 'jettyPlus': false]
-
-            dependencies {
-                adapter 'org.jboss.arquillian.container:arquillian-jetty-embedded-7:1.0.0.CR2'
-                container 'org.eclipse.jetty:jetty-webapp:8.1.11.v20130520'
-                container group: 'org.eclipse.jetty', name: 'jetty-plus', version: '8.1.11.v20130520'
-            }
-        }
-
-    }
-}
 
  
-jettyRunWar.contextPath = 'fibanocci' 
+jettyRunWar.contextPath = '' 
 
 test {
     systemProperties 'property': 'value'
