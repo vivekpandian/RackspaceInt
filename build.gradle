@@ -3,6 +3,19 @@ apply plugin: 'eclipse'
 apply plugin: 'war'
 apply plugin: 'jetty'
 
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.jboss.arquillian.gradle:arquillian-gradle-plugin:0.1'
+    }
+}
+
+apply plugin: 'arquillian'
+
 /*sourceCompatibility = 1.5
 version = '1.0'
 jar {
@@ -21,10 +34,12 @@ ext {
 	jstlVersion = "1.2"	
 	log4jVersion = "2.0-beta9"
 	restassuredVersion = "1.4"
+	arquillianVersion = "1.1.3.Final"
 }
 
 repositories {
     mavenCentral()
+    jcenter()
     //maven {url "http://download.java.net/maven/2/"}
 }
 
@@ -58,8 +73,21 @@ dependencies {
 	runtime "org.apache.logging.log4j:log4j-api:${log4jVersion}"
 	runtime "org.apache.logging.log4j:log4j-core:${log4jVersion}"    
 	
+	//swagger
+	compile "com.wordnik:swagger-jersey-jaxrs_2.10:1.3.0"
+	
 	//restassured
 	testCompile "com.jayway.restassured:rest-assured:${restassuredVersion}"
+	
+	testCompile "org.jboss.arquillian:arquillian-bom:${arquillianVersion}"
+	testCompile "org.jboss.arquillian.junit:arquillian-junit-container:${arquillianVersion}"
+	testCompile 'org.jboss.arquillian.container:arquillian-jetty-embedded-7:1.0.0.CR2'
+	//testCompile "org.eclipse.jetty:jetty-webapp:7.0.2.v20100331"
+	testCompile "org.eclipse.jetty:jetty-webapp:8.1.11.v20130520"
+	testCompile group: 'org.eclipse.jetty', name: 'jetty-plus', version: '8.1.11.v20130520'
+	testCompile "javax.servlet:javax.servlet-api:3.0.1"
+	
+	
     
 	// Servlet Api
 	providedCompile "javax.servlet:servlet-api:${servletApiVersion}"
@@ -78,8 +106,29 @@ dependencies {
  	archiveName = 'ROOT.war'
  	destinationDir = file("$rootDir/war")
 }
+
+arquillian {
+    debug = true
+    deployable = file("$rootDir/war/ROOT.war")
+
+    containers {
+        jetty {
+            version = '8'
+            type = 'embedded'
+            config = ['bindHttpPort': 8080, 'bindAddress': '127.0.0.1', 'jettyPlus': false]
+
+            dependencies {
+                adapter 'org.jboss.arquillian.container:arquillian-jetty-embedded-7:1.0.0.CR2'
+                container 'org.eclipse.jetty:jetty-webapp:8.1.11.v20130520'
+                container group: 'org.eclipse.jetty', name: 'jetty-plus', version: '8.1.11.v20130520'
+            }
+        }
+
+    }
+}
+
  
- jettyRunWar.contextPath = 'fibanocci' 
+jettyRunWar.contextPath = 'fibanocci' 
 
 test {
     systemProperties 'property': 'value'

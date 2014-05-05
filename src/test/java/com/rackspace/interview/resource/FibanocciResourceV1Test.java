@@ -1,16 +1,44 @@
 package com.rackspace.interview.resource;
 
+
 import static com.jayway.restassured.RestAssured.expect;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItems;
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+import java.io.File;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import com.rackspace.interview.service.FibanocciService;
+import com.rackspace.interview.service.FibanocciServiceImpl;
+import com.rackspace.interview.web.view.ErrorResponse;
 import com.rackspace.interview.web.view.FibanocciResponse;
 
+
+@RunAsClient
+@RunWith(Arquillian.class)
 public class FibanocciResourceV1Test {
 
+    @Deployment
+    public static Archive createDeployment() {
+        return ShrinkWrap.create(WebArchive.class, "fibanocci.war")
+                .addClass(FibanocciResourceV1.class)
+                .addClass(CustomExceptionMapper.class)
+                .addClass(FibanocciService.class)
+                .addClass(FibanocciServiceImpl.class)
+                .addClass(ErrorResponse.class)
+                .addClass(FibanocciResponse.class)
+                .setWebXML(new File("src/main/webapp", "WEB-INF/web.xml"));
+    }
+	
 	@Test
 	public void nGreaterThan47() {
 		expect().statusCode(500)
