@@ -17,6 +17,7 @@ local.properties
 .loadpath
 .gradle/
 war/
+webapps/
 
 # External tool builders
 .externalToolBuilders/
