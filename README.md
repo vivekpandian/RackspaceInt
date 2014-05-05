@@ -8,11 +8,11 @@ Deployed the project on openshift. you can use the following steps  to test the 
 Step 1: open any tool such as POSTMAN or RestClient to test the Rest API.
 
          1. set the url as 
-         		http://127.2.200.3:8080/fibanocci/api/v1/fib/{n}  
+         		http://127.3.232.129:8080/fibanocci/api/v1/fib/{n}  
          		
          	where {n} should be replaced any number.For example, to find the first 5 fibanocci numbers, the url would be 
          	
-         		http://127.2.200.3:8080/fibanocci/api/v1/fib/5
+         		http://127.3.232.129:8080/fibanocci/api/v1/fib/5
          		
          2. set the method as "GET"
          
