@@ -104,7 +104,7 @@ dependencies {
  
  war{
  	archiveName = 'ROOT.war'
- 	destinationDir = file("$rootDir/war")
+ 	destinationDir = file("webapps")
 }
 
 arquillian {
