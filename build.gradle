@@ -18,6 +18,8 @@ ext {
 	jacksonVersion = "1.9.2"
 	servletApiVersion = "2.5"
 	jstlVersion = "1.2"	
+	log4jVersion = "2.0-beta9"
+	restassuredVersion = "1.4"
 }
 
 repositories {
@@ -32,19 +34,31 @@ dependencies {
     //spring
     compile "org.springframework:spring-core:${springVersion}"
     compile "org.springframework:spring-context:${springVersion}"
+    compile "org.springframework:spring-web:${springVersion}"
     
     //jersey
     compile "com.sun.jersey:jersey-server:${jerseyVersion}"
+    compile "com.sun.jersey:jersey-core:${jerseyVersion}"
+    compile "com.sun.jersey:jersey-servlet:${jerseyVersion}"
+    compile "com.sun.jersey:jersey-json:${jerseyVersion}"
     
     //jersey-spring
     compile "com.sun.jersey.contribs:jersey-spring:${jerseySpringVersion}"
-    providedCompile "com.sun.jersey.contribs:jersey-spring:${jerseySpringVersion}"
     
     //jax-rs
     compile "javax.ws.rs:jsr311-api:${jaxrsVersion}"
     
     //jackson
-    compile "org.codehaus.jackson:jackson-mapper-asl:${jacksonVersion}"
+    //compile "org.codehaus.jackson:jackson-mapper-asl:${jacksonVersion}"
+    
+	//log4j
+	compile "org.apache.logging.log4j:log4j:${log4jVersion}"	
+	compile "org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}"
+	runtime "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+	runtime "org.apache.logging.log4j:log4j-core:${log4jVersion}"    
+	
+	//restassured
+	testCompile "com.jayway.restassured:rest-assured:${restassuredVersion}"
     
 	// Servlet Api
 	providedCompile "javax.servlet:servlet-api:${servletApiVersion}"
