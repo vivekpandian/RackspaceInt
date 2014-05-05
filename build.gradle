@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'war'
+apply plugin: 'jetty'
 
 /*sourceCompatibility = 1.5
 version = '1.0'
@@ -68,10 +69,17 @@ dependencies {
 }
 
 
-war {
+/*war {
 	destinationDir = file("$rootDir/war")
 	baseName = 'fibanocci'
- }
+ }*/
+ 
+ war{
+ 	archiveName = 'ROOT.war'
+ 	destinationDir = file("$rootDir/war")
+}
+ 
+ jettyRunWar.contextPath = 'fibanocci' 
 
 test {
     systemProperties 'property': 'value'
