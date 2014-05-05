@@ -18,7 +18,7 @@ Instructions to deploy/run Fibanocci Service.
           
           3. set Accept Header as "application/json"
           
- step 5: you would get the response in json format.
+ Step 2: Execute the Request. You would get the response in json format.
  
 2. Deploy and Run the app on local 
 
@@ -53,7 +53,7 @@ step 4 : Now, open any tool such as POSTMAN or RestClient to test the Rest API.
          
          3. set Accept Header as "application/json"
          
-step 5: you would get the response in json format.
+Step 2: Execute the Request. You would get the response in json format.
 
 
 3. Run the tests on local.
