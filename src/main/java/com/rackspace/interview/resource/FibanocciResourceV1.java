@@ -18,7 +18,7 @@ import com.rackspace.interview.service.FibanocciService;
 import com.rackspace.interview.web.view.FibanocciResponse;
 
 @Component
-@Path ("/api/v1")
+@Path ("api/v1")
 public class FibanocciResourceV1 {
 	
 	final static Logger LOGGER = LogManager.getLogger(FibanocciResourceV1.class);

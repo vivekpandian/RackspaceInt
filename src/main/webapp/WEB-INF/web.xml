@@ -7,7 +7,7 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
+    
 	<!-- To make it work on JBOSS -->
 	<context-param>
 	    <param-name>resteasy.scan</param-name>
